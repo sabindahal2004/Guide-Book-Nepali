@@ -1,19 +1,21 @@
 import {Drawer} from 'expo-router/drawer';
 import {Ionicons} from '@expo/vector-icons';
 import {Alert} from 'react-native';
+import { useSegments } from 'expo-router';
 
 export default function DrawerLayout() {
+
   return (
     <Drawer
       screenOptions={{
         headerTitleStyle: {
-          fontSize: 18,
+          fontSize: 20,
           fontWeight: 'semibold',
           textAlign: 'center',
         },
         headerTintColor: '#000',
         drawerLabelStyle: {
-          fontSize: 16,
+          fontSize: 18,
         },
         headerShadowVisible: false,
       }}>
@@ -21,6 +23,7 @@ export default function DrawerLayout() {
         name="index"
         options={{
           title: 'Nepali Guide Book (SEE)',
+          drawerActiveTintColor:"#457b9d",
           drawerIcon: ({color, focused}) => (
             <Ionicons
               name={focused ? 'home' : 'home-outline'}
@@ -51,6 +54,7 @@ export default function DrawerLayout() {
         name="about"
         options={{
           title: 'About Us',
+          drawerActiveTintColor:"#2a9d8f",
           drawerIcon: ({color, focused}) => (
             <Ionicons
               name={
@@ -68,6 +72,7 @@ export default function DrawerLayout() {
         name="privacyPolicy"
         options={{
           title: 'Privacy Policy',
+          drawerActiveTintColor:"#e76f51",
           drawerIcon: ({color, focused}) => (
             <Ionicons
               name={focused ? 'document' : 'document-outline'}
@@ -82,6 +87,7 @@ export default function DrawerLayout() {
         name="moreApps"
         options={{
           title: 'More Apps',
+          drawerActiveTintColor:"#f4a261",
           drawerIcon: ({color, focused}) => (
             <Ionicons
               name={focused ? 'apps' : 'apps-outline'}

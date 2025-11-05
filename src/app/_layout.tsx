@@ -9,6 +9,7 @@ export default function RootLayout() {
           name="(drawer)"
           options={{
             headerShown: false,
+            headerShadowVisible:false,
           }}
         />
         <Stack.Screen name="chapter/[id]" />
