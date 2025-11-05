@@ -12,6 +12,8 @@ type CardProps = {
   containerStyle?: any;
   onPress?: () => void;
   disabled?: boolean;
+  minHeight?: number;
+  iconSize?: number;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -24,6 +26,8 @@ const Card: React.FC<CardProps> = ({
   containerStyle,
   onPress,
   disabled = false,
+  minHeight = 140,
+  iconSize = 65,
 }) => {
   return (
     <TouchableOpacity
@@ -33,7 +37,7 @@ const Card: React.FC<CardProps> = ({
       style={[
         {backgroundColor: customBgColor},
         containerStyle,
-        {flexDirection, minHeight: 140, opacity: disabled ? 0.6 : 1},
+        {flexDirection, minHeight: minHeight, opacity: disabled ? 0.6 : 1},
       ]}
       className="rounded-xl p-5 items-center justify-center m-2 flex-1"
       accessibilityRole="button"
@@ -47,7 +51,7 @@ const Card: React.FC<CardProps> = ({
             marginBottom: flexDirection === 'column' ? 5 : 0,
           }}
           className="items-center justify-center">
-          <Ionicons name={icon} size={65} color={'#fff'} />
+          <Ionicons name={icon} size={iconSize} color={'#fff'} />
         </View>
       )}
 
@@ -57,12 +61,13 @@ const Card: React.FC<CardProps> = ({
         style={{
           alignItems: flexDirection === 'column' ? 'center' : 'flex-start',
         }}>
-        <View className={`${flexDirection === 'column' ? flexDirection : 'flex-row'}`}>
-          {title && nepaliTitle && (
+        <View
+          className={`${flexDirection === 'column' ? flexDirection : 'flex-row'}`}>
+          {title && (
             <>
               <Text
                 className="text-white text-xl font-bold mb-1"
-                numberOfLines={2}
+                numberOfLines={1}
                 style={{
                   textAlign: flexDirection === 'column' ? 'center' : 'left',
                 }}>
@@ -71,7 +76,7 @@ const Card: React.FC<CardProps> = ({
 
               <Text
                 className="text-white text-xl font-bold mb-1"
-                numberOfLines={2}
+                numberOfLines={1}
                 style={{
                   textAlign: flexDirection === 'column' ? 'center' : 'left',
                 }}>
@@ -83,7 +88,7 @@ const Card: React.FC<CardProps> = ({
         {description && (
           <Text
             className="text-white text-sm"
-            numberOfLines={3}
+            numberOfLines={1}
             style={{
               textAlign: flexDirection === 'column' ? 'center' : 'left',
             }}>

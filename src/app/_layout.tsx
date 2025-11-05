@@ -9,11 +9,23 @@ export default function RootLayout() {
           name="(drawer)"
           options={{
             headerShown: false,
-            headerShadowVisible:false,
+            headerShadowVisible: false,
           }}
         />
-        <Stack.Screen name="chapter/[id]" />
-        <Stack.Screen name="+not-found" options={{title: 'Page Not Found', animation:"slide_from_right"}} />
+        <Stack.Screen
+          name="chapter/[id]"
+          options={({route}) => {
+            const params = route.params as any;
+            const title = params?.title ?? 'Chapter';
+            return {
+              headerTitle: title,
+            };
+          }}
+        />
+        <Stack.Screen
+          name="+not-found"
+          options={{title: 'Page Not Found', animation: 'slide_from_right'}}
+        />
       </Stack>
     </GestureHandlerRootView>
   );
