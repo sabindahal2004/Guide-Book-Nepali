@@ -5,6 +5,7 @@ import {Ionicons} from '@expo/vector-icons';
 type CardProps = {
   icon?: keyof typeof Ionicons.glyphMap;
   title?: string;
+  nepaliTitle?: string;
   description?: string;
   customBgColor?: string;
   flexDirection?: 'row' | 'column';
@@ -16,6 +17,7 @@ type CardProps = {
 const Card: React.FC<CardProps> = ({
   icon,
   title,
+  nepaliTitle,
   description,
   customBgColor = '#e63946',
   flexDirection = 'row',
@@ -55,16 +57,29 @@ const Card: React.FC<CardProps> = ({
         style={{
           alignItems: flexDirection === 'column' ? 'center' : 'flex-start',
         }}>
-        {title && (
-          <Text
-            className="text-white text-xl font-bold mb-1"
-            numberOfLines={2}
-            style={{
-              textAlign: flexDirection === 'column' ? 'center' : 'left',
-            }}>
-            {title}
-          </Text>
-        )}
+        <View className={`${flexDirection === 'column' ? flexDirection : 'flex-row'}`}>
+          {title && nepaliTitle && (
+            <>
+              <Text
+                className="text-white text-xl font-bold mb-1"
+                numberOfLines={2}
+                style={{
+                  textAlign: flexDirection === 'column' ? 'center' : 'left',
+                }}>
+                {title}
+              </Text>
+
+              <Text
+                className="text-white text-xl font-bold mb-1"
+                numberOfLines={2}
+                style={{
+                  textAlign: flexDirection === 'column' ? 'center' : 'left',
+                }}>
+                {nepaliTitle}
+              </Text>
+            </>
+          )}
+        </View>
         {description && (
           <Text
             className="text-white text-sm"

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, ScrollView, Dimensions} from 'react-native';
 import Card from '../components/Card';
-import { useRouter } from 'expo-router';
+import {useRouter} from 'expo-router';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -13,36 +13,40 @@ const Index = () => {
       {/* Full-width cards */}
       <Card
         icon="book"
-        title="Chapters"
-        description="Every chapter Nepali books contain"
+        title="Chapters "
+        nepaliTitle="(अध्यायहरू)"
+        description="Let's explore notes and solved questions."
         customBgColor="#457b9d"
-        onPress={() => router.push("../screens/chapterScreen")}
+        onPress={() => router.push('../screens/chapterScreen')}
       />
       <Card
         icon="school"
-        title="Grammar"
-        description="Learn step by step with examples"
+        title="Grammar "
+        nepaliTitle="(व्याकरण)"
+        description="Let's understand grammar easily with notes, examples, and exercises."
         customBgColor="#2a9d8f"
-        onPress={() => router.push("../screens/grammarScreen")}
+        onPress={() => router.push('../screens/grammarScreen')}
       />
 
       {/* Grid cards */}
       <View className="flex-row flex-wrap justify-center">
         <Card
           icon="document"
-          title="Old Questions"
+          title="Old Questions "
+          nepaliTitle="(विगतका प्रश्नहरू)"
           customBgColor="#e76f51"
           flexDirection="column"
           containerStyle={{width: cardWidth}}
-          onPress={() => router.push("../screens/oldQuestionsScreen")}
+          onPress={() => router.push('../screens/oldQuestionsScreen')}
         />
         <Card
           icon="apps"
-          title="More Apps"
+          title="More Apps "
+          nepaliTitle="(थप एपहरू)"
           customBgColor="#f4a261"
           flexDirection="column"
           containerStyle={{width: cardWidth}}
-          onPress={() => router.push("../screens/moreAppsScreen")}
+          onPress={() => router.push('../screens/moreAppsScreen')}
         />
       </View>
     </ScrollView>

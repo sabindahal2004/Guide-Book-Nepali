@@ -7,7 +7,7 @@ const MoreAppScreen = () => {
     <>
       <Stack.Screen
         options={{
-          title: 'More Apps',
+          title: 'More Apps (थप एपहरू)',
           headerShadowVisible: false,
           headerTitleStyle: {
             fontSize: 20,

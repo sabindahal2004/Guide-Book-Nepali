@@ -7,12 +7,15 @@ const ChapterScreen = () => {
     <>
       <Stack.Screen
         options={{
-          title: 'Chapters',
+          title: 'Chapters (अध्यायहरू)',
           headerShadowVisible: false,
           headerTitleStyle: {
             fontSize: 20,
             fontWeight: 'semibold',
           },
+          headerSearchBarOptions:{
+            placeholder: 'Search Chapters...',
+          }
         }}
       />
       <View>

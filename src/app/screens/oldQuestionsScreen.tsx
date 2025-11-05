@@ -7,7 +7,7 @@ const OldQuestionScreen = () => {
     <>
       <Stack.Screen
         options={{
-          title: 'Old Questions',
+          title: 'Old Questions (विगतका प्रश्नहरू)',
           headerShadowVisible: false,
           headerTitleStyle: {
             fontSize: 20,
