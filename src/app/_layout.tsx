@@ -18,12 +18,11 @@ export default function RootLayout() {
             const params = route.params as any;
             const title = params?.title ?? 'Chapter';
             return {
-              headerTitle: title,
+              headerTitle: `${title} (पाठ - ${params?.chapterNo ?? ''})`,
               headerTitleStyle: {
                 fontSize: 20,
                 fontWeight: 'semibold',
               },
-              headerShadowVisible: false,
               animation: 'slide_from_right',
             };
           }}

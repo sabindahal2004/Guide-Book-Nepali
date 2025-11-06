@@ -13,7 +13,6 @@ const ChapterScreen = () => {
       <Stack.Screen
         options={{
           title: 'Chapters (अध्यायहरू)',
-          headerShadowVisible: false,
           headerTitleStyle: {
             fontSize: 20,
             fontWeight: 'semibold',
@@ -40,7 +39,7 @@ const ChapterScreen = () => {
               customBgColor={item.bgColor}
               onPress={() =>
                 router.push(
-                  `/chapter/${item.id}?title=${encodeURIComponent(item.title)}`,
+                  `/chapter/${item.id}?title=${encodeURIComponent(item.title)}&chapterNo=${item.chapterNo}`,
                 )
               }
             />
