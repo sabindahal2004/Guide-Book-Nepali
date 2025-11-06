@@ -13,6 +13,7 @@ const GrammerScreen = () => {
             fontSize: 20,
             fontWeight: 'semibold',
           },
+          animation: 'slide_from_right',
         }}
       />
       <View>

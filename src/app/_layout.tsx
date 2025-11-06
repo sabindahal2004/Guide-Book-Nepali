@@ -19,6 +19,12 @@ export default function RootLayout() {
             const title = params?.title ?? 'Chapter';
             return {
               headerTitle: title,
+              headerTitleStyle: {
+                fontSize: 20,
+                fontWeight: 'semibold',
+              },
+              headerShadowVisible: false,
+              animation: 'slide_from_right',
             };
           }}
         />

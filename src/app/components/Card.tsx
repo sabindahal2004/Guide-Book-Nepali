@@ -39,7 +39,7 @@ const Card: React.FC<CardProps> = ({
         containerStyle,
         {flexDirection, minHeight: minHeight, opacity: disabled ? 0.6 : 1},
       ]}
-      className="rounded-xl p-5 items-center justify-center m-2 flex-1"
+      className="rounded-xl p-5 items-center justify-center m-2 "
       accessibilityRole="button"
       accessibilityLabel={title}
       accessibilityHint={description}>

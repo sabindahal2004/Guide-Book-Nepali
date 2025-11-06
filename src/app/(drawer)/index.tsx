@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Dimensions} from 'react-native';
+import {View, ScrollView, Dimensions, StatusBar} from 'react-native';
 import Card from '../components/Card';
 import {useRouter} from 'expo-router';
 
@@ -10,6 +10,7 @@ const Index = () => {
   const router = useRouter();
   return (
     <ScrollView className=" bg-white   " showsVerticalScrollIndicator={false}>
+      <StatusBar barStyle="default" />
       {/* Full-width cards */}
       <Card
         icon="book"
