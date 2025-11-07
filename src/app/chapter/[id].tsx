@@ -48,17 +48,57 @@ export default function ChapterDetails() {
                   </View>
                 )}
 
+                {/* Render subQuestions or subQuestion in Q&A style */}
+                {(q.subQuestions?.length > 0 || q.subQuestion?.length > 0) && (
+                  <View className="mt-2 ml-2">
+                    {(q.subQuestions || q.subQuestion).map(
+                      (subQ: any, i: number) => (
+                        <View key={i} className="mb-3">
+                          <Text className="font-semibold text-lg text-black">
+                            {subQ.sub ? `${subQ.sub}. ` : ''}
+                            {subQ.question}
+                            <Text className="font-medium text-gray-600 text-base italic">
+                              {' '}
+                              {subQ.meaning}
+                            </Text>
+                          </Text>
+                          <Text className="ml-6 mt-1 text-lg text-gray-600">
+                            उत्तर:{' '}
+                            <Text className="font-medium text-black text-lg">
+                              {subQ.answer}
+                            </Text>
+                          </Text>
+                        </View>
+                      ),
+                    )}
+                  </View>
+                )}
+
                 {/* Render paragraph if exists */}
                 {q.paragraph && (
                   <Text className="mt-2 text-black text-lg">{q.paragraph}</Text>
+                )}
+
+                {/* Render example string if exists */}
+                {q.example && (
+                  <Text className="mt-2 italic text-gray-600 text-lg">
+                    {q.example}
+                  </Text>
+                )}
+                {/* Render answer if exists */}
+                {q.answer && (
+                  <Text className="mt-2 text-black text-lg">{q.answer}</Text>
                 )}
 
                 {/* Render synonyms array if exists */}
                 {q.synonyms?.length > 0 && (
                   <View className="mt-2">
                     {q.synonyms.map((s: any, j: number) => (
-                      <Text key={j} className="text-lg text-black">
-                        • {s.word1} — {s.word2}
+                      <Text key={j} className="ml-6 mt-1 text-lg text-gray-600">
+                        उत्तर:{' '}
+                        <Text className="font-medium text-black text-lg">
+                          {s.word1} — {s.word2}
+                        </Text>
                       </Text>
                     ))}
                   </View>
@@ -68,23 +108,25 @@ export default function ChapterDetails() {
                 {q.synonymsList?.length > 0 && (
                   <View className="mt-2">
                     {q.synonymsList.map((s: any, j: number) => (
-                      <Text key={j} className="text-lg text-black">
-                        • {s.word} — {s.synonym}
+                      <Text key={j} className="ml-6 mt-1 text-lg text-gray-600">
+                        उत्तर:{' '}
+                        <Text className="font-medium text-black text-lg">
+                          {s.word} — {s.synonym}
+                        </Text>
                       </Text>
                     ))}
                   </View>
-                )}
-                {/* Render example string if exists */}
-                {q.example && (
-                  <Text className="mt-2 italic text-gray-600">{q.example}</Text>
                 )}
 
                 {/* Render antonyms array if exists */}
                 {q.antonyms?.length > 0 && (
                   <View className="mt-2">
                     {q.antonyms.map((a: any, j: number) => (
-                      <Text key={j} className="text-lg text-black">
-                        • {a.word} — {a.opposite}
+                      <Text key={j} className="ml-6 mt-1 text-lg text-gray-600">
+                        उत्तर:{' '}
+                        <Text className="font-medium text-black text-lg">
+                          {a.word} — {a.opposite}
+                        </Text>
                       </Text>
                     ))}
                   </View>
@@ -124,15 +166,20 @@ export default function ChapterDetails() {
 
                 {/* Render example string if exists */}
                 {q.example && (
-                  <Text className="mt-2 italic text-gray-600">{q.example}</Text>
+                  <Text className="mt-2 italic text-gray-600 text-lg">
+                    {q.example}
+                  </Text>
                 )}
 
                 {/* Render synonyms array if exists */}
                 {q.synonyms?.length > 0 && (
                   <View className="mt-2">
                     {q.synonyms.map((s: any, j: number) => (
-                      <Text key={j} className="text-lg text-black">
-                        • {s.word1} — {s.word2}
+                      <Text key={j} className="ml-6 mt-1 text-lg text-gray-600">
+                        उत्तर:{' '}
+                        <Text className="font-medium text-black text-lg">
+                          {s.word1} — {s.word2}
+                        </Text>
                       </Text>
                     ))}
                   </View>
@@ -161,24 +208,42 @@ export default function ChapterDetails() {
                               subQ.answer.map((ans: string, ai: number) => (
                                 <Text
                                   key={ai}
-                                  className="ml-6 text-black text-lg">
-                                  • {ans}
+                                  className="ml-6 mt-1 text-lg text-gray-600">
+                                  उत्तर:{' '}
+                                  <Text className="font-medium text-black text-lg">
+                                    {ans}
+                                  </Text>
                                 </Text>
                               ))
                             ) : typeof subQ.answer === 'object' ? (
                               Object.entries(subQ.answer).map(([key, val]) => (
+                                // <Text
+                                //   key={key}
+                                //   className="ml-6 text-black text-lg">
+                                //   • {key}:{' '}
+                                //   <Text className="font-semibold">
+                                //     {String(val)}
+                                //   </Text>
+                                // </Text>
+
                                 <Text
                                   key={key}
-                                  className="ml-6 text-black text-lg">
-                                  • {key}:{' '}
-                                  <Text className="font-semibold">
-                                    {String(val)}
+                                  className="ml-6 mt-1 text-lg text-gray-600">
+                                  उत्तर:{' '}
+                                  <Text className="ml-6 text-black text-lg">
+                                    {key}:{' '}
+                                    <Text className="font-semibold">
+                                      {String(val)}
+                                    </Text>
                                   </Text>
                                 </Text>
                               ))
                             ) : (
-                              <Text className="ml-6 text-black text-lg">
-                                {subQ.answer}
+                              <Text className="ml-6 mt-1 text-lg text-gray-600">
+                                {subQ.answer ? 'उत्तर : ' : ''}
+                                <Text className="font-medium text-black text-lg">
+                                  {subQ.answer}
+                                </Text>
                               </Text>
                             )}
                           </View>
@@ -203,23 +268,42 @@ export default function ChapterDetails() {
                           ))
                         ) : typeof subQ.answer === 'object' ? (
                           Object.entries(subQ.answer).map(([key, val]) => (
-                            <Text key={key} className="ml-6 text-black text-lg">
-                              • {key}:{' '}
-                              <Text className="font-semibold">
-                                {String(val)}
+                            <Text
+                              key={key}
+                              className="ml-6 mt-1 text-lg text-gray-600">
+                              उत्तर:{' '}
+                              <Text className="ml-6 text-black text-lg">
+                                {key}:{' '}
+                                <Text className="font-semibold">
+                                  {String(val)}
+                                </Text>
                               </Text>
                             </Text>
                           ))
                         ) : (
-                          <Text className="ml-6 text-black text-lg">
-                            {subQ.answer}
+                          <Text className="ml-6 mt-1 text-lg text-gray-600">
+                            {subQ.answer ? 'उत्तर : ' : ''}
+                            <Text className="font-medium text-black text-lg">
+                              {subQ.answer}
+                            </Text>
                           </Text>
                         )}
                       </View>
                     ))
                   : !q.subSections && (
-                      <Text className="text-black text-lg">{q.answer}</Text>
+                      <Text className="text-black text-lg">
+                        <Text className="ml-6 mt-1 text-lg text-gray-600">
+                          {q.answer ? 'उत्तर : ' : ''}
+                          <Text className="font-medium text-black text-lg">
+                            {q.answer}
+                          </Text>
+                        </Text>
+                      </Text>
                     )}
+                {/* Render paragraph if exists */}
+                {q.paragraph && (
+                  <Text className="mt-2 text-black text-lg">{q.paragraph}</Text>
+                )}
               </View>
             ))}
           </View>
