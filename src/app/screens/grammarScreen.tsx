@@ -9,7 +9,6 @@ const GrammerScreen = () => {
       <Stack.Screen
         options={{
           title: 'Grammar (व्याकरण)',
-          headerShadowVisible: false,
           headerTitleStyle: {
             fontSize: 20,
             fontWeight: 'semibold',
