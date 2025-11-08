@@ -1,19 +1,25 @@
-import {ScrollView, Text, View, Linking} from 'react-native';
+import {Linking, ScrollView, Text, View} from 'react-native';
 
 export default function PrivacyPolicyScreen() {
   return (
-    <ScrollView className="flex-1 bg-white px-5 py-6" showsVerticalScrollIndicator={false}>
+    <ScrollView
+      className="flex-1 bg-white px-5 py-6 pb-10"
+      showsVerticalScrollIndicator={false}>
       <View className="mb-4">
         <Text className="text-2xl font-bold text-['#e76f51'] mb-2 text-center">
           Privacy Policy
         </Text>
-        <Text className="text-gray-500 text-center text-sm">Last Updated: December 2025</Text>
+        <Text className="text-gray-500 text-center text-sm">
+          Last Updated: December 2025
+        </Text>
       </View>
 
       <Text className="text-lg text-black leading-6 mb-4">
-        <Text className="font-semibold text-['#e76f51'] ">Nepali Guide Book (SEE)</Text> is
-        developed by Mr EngineerDev. This Privacy Policy describes how we handle
-        user data and educational content in the app.
+        <Text className="font-semibold text-['#e76f51'] ">
+          Nepali Guide Book (SEE)
+        </Text>{' '}
+        is developed by Mr EngineerDev. This Privacy Policy describes how we
+        handle user data and educational content in the app.
       </Text>
 
       <Text className="text-lg font-semibold mb-2">

@@ -1,21 +1,69 @@
-import chapterData from '@/src/data/chapterData';
+import {db} from '@/config/firebaseConfig';
 import {useLocalSearchParams} from 'expo-router';
-import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {doc, getDoc} from 'firebase/firestore';
+import React, {useEffect, useState} from 'react';
+import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
 import AppView from '../components/AppView';
 
 export default function ChapterDetails() {
   const {id} = useLocalSearchParams();
-  const chapter = chapterData.find(chap => chap.id === (id as string));
+  const [chapter, setChapter] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
 
-  if (!chapter) {
+  // For debugging purposes
+  // useEffect(() => {
+  //   console.log('📘 Received Chapter ID:', id);
+  //   fetchChapterDetails();
+  // }, [id]);
+
+  // 🔹 Fetch chapter details from Firestore
+  const fetchChapterDetails = async () => {
+    try {
+      if (!id) return;
+
+      const docRef = doc(db, 'chapterDetails', id as string);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setChapter({
+          id: docSnap.id,
+          ...docSnap.data(),
+        });
+      } else {
+        console.warn('⚠️ Chapter not found');
+        setChapter(null);
+      }
+    } catch (error) {
+      console.error('❌ Error fetching chapter:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchChapterDetails();
+  }, [id]);
+
+  // 🔹 Show loading indicator while fetching
+  if (loading) {
     return (
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-lg">Chapter not found</Text>
+      <View className="flex-1 justify-center items-center bg-white">
+        <ActivityIndicator size="large" color="#2563EB" />
+        <Text className="mt-3 text-gray-600 text-base">Loading chapter...</Text>
       </View>
     );
   }
 
+  // 🔹 Show message if chapter not found
+  if (!chapter) {
+    return (
+      <View className="flex-1 justify-center items-center bg-white">
+        <Text className="text-lg text-gray-600">Chapter not found</Text>
+      </View>
+    );
+  }
+
+  // 🔹 Render Section Based on Type
   const renderSection = (section: any, index: number) => {
     switch (section.type) {
       case 'wordMeaning':
@@ -325,7 +373,9 @@ export default function ChapterDetails() {
         </Text>
 
         {/* Render all sections dynamically */}
-        {chapter.sections.map((section, i) => renderSection(section, i))}
+        {chapter.sections.map((section: any, i: number) =>
+          renderSection(section, i),
+        )}
       </AppView>
     </ScrollView>
   );

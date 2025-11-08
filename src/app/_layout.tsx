@@ -1,35 +1,50 @@
 import {Stack} from 'expo-router';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import '../../global.css';
+
 export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
-      <Stack>
+      <Stack
+        screenOptions={{
+          headerShadowVisible: false,
+          animation: 'slide_from_right',
+        }}>
+        {/* Drawer Navigator */}
         <Stack.Screen
           name="(drawer)"
           options={{
             headerShown: false,
-            headerShadowVisible: false,
           }}
         />
+
+        {/* Dynamic Chapter Screen */}
         <Stack.Screen
           name="chapter/[id]"
           options={({route}) => {
-            const params = route.params as any;
-            const title = params?.title ?? 'Chapter';
+            const params = route.params as {title?: string; chapterNo?: string};
+
+            const title = params?.title || 'Chapter';
+            const chapterNo = params?.chapterNo || '';
+
             return {
-              headerTitle: `${title} (पाठ - ${params?.chapterNo ?? ''})`,
+              headerTitle: `${title} ${chapterNo ? `(पाठ - ${chapterNo})` : ''}`,
               headerTitleStyle: {
                 fontSize: 20,
-                fontWeight: 'semibold',
+                fontWeight: '600',
               },
               animation: 'slide_from_right',
             };
           }}
         />
+
+        {/* 404 / Not Found Fallback */}
         <Stack.Screen
           name="+not-found"
-          options={{title: 'Page Not Found', animation: 'slide_from_right'}}
+          options={{
+            title: 'Page Not Found',
+            headerTitleStyle: {fontSize: 18, fontWeight: '600'},
+          }}
         />
       </Stack>
     </GestureHandlerRootView>

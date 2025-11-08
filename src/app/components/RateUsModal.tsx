@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {Modal, View, Text, TouchableOpacity, Linking} from 'react-native';
 import {FontAwesome} from '@expo/vector-icons';
+import React, {useState} from 'react';
+import {Linking, Modal, Text, TouchableOpacity, View} from 'react-native';
 
 type RateUsModalProps = {
   visible: boolean;
@@ -11,7 +11,7 @@ export default function RateUsModal({visible, onClose}: RateUsModalProps) {
   const [rating, setRating] = useState(0);
 
   const PLAY_STORE_URL =
-    'https://play.google.com/store/apps/details?id=com.yourapp.package';
+    'https://play.google.com/store/apps/details?id=com.tencent.ig';
 
   const handleStarPress = (value: number) => {
     setRating(value);

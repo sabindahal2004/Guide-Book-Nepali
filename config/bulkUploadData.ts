@@ -1,7 +1,7 @@
 import chapterData from '@/src/data/chapterData';
-import {collection, doc, setDoc} from 'firebase/firestore';
-import {db} from './firebaseConfig';
+import {doc, setDoc} from 'firebase/firestore';
 import {Alert} from 'react-native';
+import {db} from './firebaseConfig';
 
 const chapterDetailsData = chapterData;
 
@@ -9,10 +9,7 @@ const bulkUploadData = async () => {
   try {
     for (let i = 0; i < chapterDetailsData.length; i++) {
       const chapterDetails = chapterDetailsData[i];
-      const docRef = doc(
-        collection(db, 'chapterDetails'),
-        `chapterDetails_${i + 1}`,
-      );
+      const docRef = doc(db, 'chapterDetails', String(chapterDetails.id));
       await setDoc(docRef, chapterDetails);
       Alert.alert('Success', `Uploaded chapterDetails_${i + 1} successfully`);
     }
