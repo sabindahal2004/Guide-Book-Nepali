@@ -1,7 +1,6 @@
 import {Drawer} from 'expo-router/drawer';
 import {Ionicons} from '@expo/vector-icons';
 import {Alert} from 'react-native';
-import {useSegments} from 'expo-router';
 
 export default function DrawerLayout() {
   return (
@@ -80,21 +79,6 @@ export default function DrawerLayout() {
             />
           ),
           drawerLabel: 'Privacy Policy',
-        }}
-      />
-      <Drawer.Screen
-        name="moreApps"
-        options={{
-          title: 'More Apps (थप एपहरू)',
-          drawerActiveTintColor: '#f4a261',
-          drawerIcon: ({color, focused}) => (
-            <Ionicons
-              name={focused ? 'apps' : 'apps-outline'}
-              size={18}
-              color={color}
-            />
-          ),
-          drawerLabel: 'More Apps (थप एपहरू)',
         }}
       />
     </Drawer>
