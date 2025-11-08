@@ -14,6 +14,7 @@ type CardProps = {
   disabled?: boolean;
   minHeight?: number;
   iconSize?: number;
+  fontSize?: string;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -28,6 +29,7 @@ const Card: React.FC<CardProps> = ({
   disabled = false,
   minHeight = 140,
   iconSize = 65,
+  fontSize = 'xl',
 }) => {
   return (
     <TouchableOpacity
@@ -66,7 +68,7 @@ const Card: React.FC<CardProps> = ({
           {title && (
             <>
               <Text
-                className="text-white text-xl font-bold mb-1"
+                className={`text-white text-${fontSize} font-bold mb-1`}
                 numberOfLines={1}
                 style={{
                   textAlign: flexDirection === 'column' ? 'center' : 'left',
@@ -75,7 +77,7 @@ const Card: React.FC<CardProps> = ({
               </Text>
 
               <Text
-                className="text-white text-xl font-bold mb-1"
+                className={`text-white text-${fontSize} font-bold mb-1`}
                 numberOfLines={1}
                 style={{
                   textAlign: flexDirection === 'column' ? 'center' : 'left',

@@ -38,6 +38,27 @@ export default function RootLayout() {
           }}
         />
 
+ {/* Dynamic Old Question Screen */}
+ <Stack.Screen
+          name="oldQuestion/[year]"
+          options={({route}) => {
+            const params = route.params as {year?:string};
+
+            const year = params?.year || '2082';
+
+            return {
+              headerTitle: `SEE Model Question ${year}`,
+              headerTitleStyle: {
+                fontSize: 20,
+                fontWeight: '600',
+              },
+              animation: 'slide_from_right',
+              headerShadowVisible:true,
+            };
+          }}
+        />
+
+
         {/* 404 / Not Found Fallback */}
         <Stack.Screen
           name="+not-found"

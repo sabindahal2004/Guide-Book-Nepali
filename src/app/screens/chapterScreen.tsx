@@ -4,7 +4,6 @@ import {Stack, useRouter} from 'expo-router';
 import chapterData from '../../data/chapterData';
 import {FlatList} from 'react-native-gesture-handler';
 import Card from '../components/Card';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ChapterScreen = () => {
   const router = useRouter();
@@ -31,7 +30,7 @@ const ChapterScreen = () => {
           contentContainerStyle={{paddingTop:6, paddingBottom: 32}}
           renderItem={({item}) => (
             <Card
-              minHeight={98}
+              minHeight={100}
               title={item.title}
               icon="book"
               iconSize={50}
