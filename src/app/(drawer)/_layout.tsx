@@ -36,9 +36,9 @@ export default function DrawerLayout() {
           headerRight() {
             return (
               <Ionicons
-                name="information-circle-outline"
-                size={18}
-                color="#000"
+                name="star-outline"
+                size={22}
+                color="orange"
                 style={{marginRight: 15}}
                 onPress={() =>
                   Alert.alert('Demo Click', 'More features coming soon!')

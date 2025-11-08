@@ -41,9 +41,9 @@ export default function AboutScreen() {
             <Ionicons name="checkmark-circle" size={16} color="#2a9d8f" />{' '}
             Chapter-wise Notes
           </Text>
-          <Text className="text-black mb-1 text-lg">
+          <Text className="text-gray-400 mb-1 text-lg">
             <Ionicons name="checkmark-circle" size={16} color="#2a9d8f" />{' '}
-            Grammar & Writing Section
+            Grammar & Writing Section (Comming Soon)
           </Text>
           <Text className="text-black mb-1 text-lg">
             <Ionicons name="checkmark-circle" size={16} color="#2a9d8f" /> Old
@@ -59,7 +59,7 @@ export default function AboutScreen() {
           </Text>
           <Text className="text-black mb-1 text-lg">
             <Ionicons name="checkmark-circle" size={16} color="#2a9d8f" />{' '}
-            Freefor all students
+            Free for all students
           </Text>
         </View>
       </View>

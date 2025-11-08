@@ -50,6 +50,7 @@ const Index = () => {
           onPress={() => router.push('../screens/moreAppsScreen')}
         />
       </View>
+      {/* <Card icon="heart" title="Support Us " nepaliTitle="(थप एपहरू)" /> */}
     </ScrollView>
   );
 };
