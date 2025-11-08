@@ -12,6 +12,7 @@ const ChapterScreen = () => {
       <Stack.Screen
         options={{
           title: 'Chapters (अध्यायहरू)',
+          headerShadowVisible:true,
           headerTitleStyle: {
             fontSize: 20,
             fontWeight: 'semibold',

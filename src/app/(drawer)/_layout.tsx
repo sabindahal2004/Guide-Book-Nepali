@@ -19,7 +19,7 @@ export default function DrawerLayout() {
           drawerLabelStyle: {
             fontSize: 16,
           },
-          headerShadowVisible: false,
+          headerShadowVisible: true,
           drawerStyle: {
             width: '70%',
           },

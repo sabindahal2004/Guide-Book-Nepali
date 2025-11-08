@@ -23,7 +23,6 @@ export default function RootLayout() {
           name="chapter/[id]"
           options={({route}) => {
             const params = route.params as {title?: string; chapterNo?: string};
-
             const title = params?.title || 'Chapter';
             const chapterNo = params?.chapterNo || '';
 
@@ -34,15 +33,16 @@ export default function RootLayout() {
                 fontWeight: '600',
               },
               animation: 'slide_from_right',
+              headerShadowVisible:true,
             };
           }}
         />
 
- {/* Dynamic Old Question Screen */}
- <Stack.Screen
+        {/* Dynamic Old Question Screen */}
+        <Stack.Screen
           name="oldQuestion/[year]"
           options={({route}) => {
-            const params = route.params as {year?:string};
+            const params = route.params as {year?: string};
 
             const year = params?.year || '2082';
 
@@ -53,11 +53,10 @@ export default function RootLayout() {
                 fontWeight: '600',
               },
               animation: 'slide_from_right',
-              headerShadowVisible:true,
+              headerShadowVisible: true,
             };
           }}
         />
-
 
         {/* 404 / Not Found Fallback */}
         <Stack.Screen
