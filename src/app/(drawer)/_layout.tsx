@@ -85,8 +85,7 @@ export default function DrawerLayout() {
           }}
         />
       </Drawer>
-
-      {/* ✅ Modal rendered globally, not inside headerRight */}
+      
       <RateUsModal
         visible={showRateUsModal}
         onClose={() => setShowRateUsModal(false)}

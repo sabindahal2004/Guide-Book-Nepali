@@ -1,7 +1,7 @@
+import chapterData from '@/src/data/chapterData';
+import {useLocalSearchParams} from 'expo-router';
 import React from 'react';
 import {ScrollView, Text, View} from 'react-native';
-import {useLocalSearchParams} from 'expo-router';
-import chapterData from '@/src/data/chapterData';
 import AppView from '../components/AppView';
 
 export default function ChapterDetails() {

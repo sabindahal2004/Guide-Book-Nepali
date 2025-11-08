@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, ScrollView, Dimensions, StatusBar} from 'react-native';
 import Card from '../components/Card';
 import {useRouter} from 'expo-router';
+import bulkUploadData from '../../../config/bulkUploadData';
 
 const screenWidth = Dimensions.get('window').width;
 
 const Index = () => {
+  // For bulk upload data only once (To firestore)
+  // useEffect(() => {
+  //   bulkUploadData();
+  // }, []);
+  
   const cardWidth = (screenWidth - 30) / 2;
   const router = useRouter();
   return (
