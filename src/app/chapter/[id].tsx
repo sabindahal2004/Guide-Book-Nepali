@@ -8,7 +8,7 @@ import chapterData from '@/src/data/chapterData';
 
 export default function ChapterDetails() {
   const {id} = useLocalSearchParams();
-  const chapter = chapterData.find((chap) => chap.id === id);
+  const chapter = chapterData.find(chap => chap.id === id);
   // const [chapter, setChapter] = useState<any>([]);
   const [loading, setLoading] = useState(true);
 
@@ -213,7 +213,10 @@ export default function ChapterDetails() {
                     {q.verse}
                   </Text>
                 )}
-
+                {/* Render paragraph if exists */}
+                {q.paragraph && (
+                  <Text className="mt-2 mb-6 text-black text-lg">{q.paragraph}</Text>
+                )}
                 {/* Render example string if exists */}
                 {q.example && (
                   <Text className="mt-2 italic text-gray-600 text-lg">
@@ -306,7 +309,7 @@ export default function ChapterDetails() {
                 {!q.subSections && q.subQuestions
                   ? q.subQuestions.map((subQ: any, idx: number) => (
                       <View key={idx} className="mb-3 ml-4">
-                        <Text className="font-semibold text-lg">
+                        <Text className="font-bold text-lg">
                           {subQ.sub ? `${subQ.sub}. ` : ''}
                           {subQ.question}
                         </Text>
@@ -350,10 +353,6 @@ export default function ChapterDetails() {
                         </Text>
                       </Text>
                     )}
-                {/* Render paragraph if exists */}
-                {q.paragraph && (
-                  <Text className="mt-2 text-black text-lg">{q.paragraph}</Text>
-                )}
               </View>
             ))}
           </View>
