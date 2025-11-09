@@ -98,6 +98,11 @@ export default function ChapterDetails() {
                   </View>
                 )}
 
+                {/* Render paragraph if exists */}
+                {q.paragraph && (
+                  <Text className="mt-2 text-black text-lg">{q.paragraph}</Text>
+                )}
+
                 {/* Render subQuestions or subQuestion in Q&A style */}
                 {(q.subQuestions?.length > 0 || q.subQuestion?.length > 0) && (
                   <View className="mt-2 ml-2">
@@ -124,11 +129,6 @@ export default function ChapterDetails() {
                   </View>
                 )}
 
-                {/* Render paragraph if exists */}
-                {q.paragraph && (
-                  <Text className="mt-2 text-black text-lg">{q.paragraph}</Text>
-                )}
-
                 {/* Render example string if exists */}
                 {q.example && (
                   <Text className="mt-2 italic text-gray-600 text-lg">
@@ -137,7 +137,12 @@ export default function ChapterDetails() {
                 )}
                 {/* Render answer if exists */}
                 {q.answer && (
-                  <Text className="mt-2 text-black text-lg">{q.answer}</Text>
+                  <Text className="ml-6 mt-1 text-lg text-gray-600">
+                    उत्तर:{' '}
+                    <Text className="font-medium text-black text-lg">
+                      {q.answer}
+                    </Text>
+                  </Text>
                 )}
 
                 {/* Render synonyms array if exists */}
@@ -215,7 +220,9 @@ export default function ChapterDetails() {
                 )}
                 {/* Render paragraph if exists */}
                 {q.paragraph && (
-                  <Text className="mt-2 mb-6 text-black text-lg">{q.paragraph}</Text>
+                  <Text className="mt-2 mb-6 text-black text-lg">
+                    {q.paragraph}
+                  </Text>
                 )}
                 {/* Render example string if exists */}
                 {q.example && (
