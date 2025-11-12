@@ -212,18 +212,58 @@ export default function ChapterDetails() {
               <View key={q.id} className="mb-4">
                 <Text className="text-xl font-bold mb-2">{q.question}</Text>
 
-                {/* Render verse if exists */}
-                {q.verse && (
-                  <Text className="italic mb-2 text-gray-600 text-lg">
-                    {q.verse}
+                {/* Letter head center */}
+                {q.centerHead && (
+                  <Text className="mt-2 mb-6 text-black text-lg  text-center">
+                    {q.centerHead}
                   </Text>
                 )}
+
+                {/* Letter Date */}
+                {q.date && (
+                  <Text className="mt-2 mb-6 text-black text-lg  text-end">
+                    {q.date}
+                  </Text>
+                )}
+
                 {/* Render paragraph if exists */}
                 {q.paragraph && (
                   <Text className="mt-2 mb-6 text-black text-lg">
                     {q.paragraph}
                   </Text>
                 )}
+
+                {q.center && (
+                  <Text className="mt-2 mb-6 text-black text-lg  text-center">
+                    {q.center}
+                  </Text>
+                )}
+
+                {q.content && (
+                  <Text className="mt-2 mb-6 text-black text-lg">
+                    {q.content}
+                  </Text>
+                )}
+
+                {q.letterRight && (
+                  <Text className="mt-2 mb-6 text-black text-lg text-end">
+                    {q.letterRight}
+                  </Text>
+                )}
+
+                {q.letterLeft && (
+                  <Text className="mt-2 mb-6 text-black text-lg text-start">
+                    {q.letterLeft}
+                  </Text>
+                )}
+
+                {/* Render verse if exists */}
+                {q.verse && (
+                  <Text className="italic mb-2 text-gray-600 text-lg">
+                    {q.verse}
+                  </Text>
+                )}
+
                 {/* Render example string if exists */}
                 {q.example && (
                   <Text className="mt-2 italic text-gray-600 text-lg">
@@ -360,6 +400,11 @@ export default function ChapterDetails() {
                         </Text>
                       </Text>
                     )}
+                {q.letterRight2 && (
+                  <Text className="mt-2 mb-6 text-black text-lg text-end">
+                    {q.letterRight2}
+                  </Text>
+                )}
               </View>
             ))}
           </View>
