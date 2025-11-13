@@ -103,6 +103,15 @@ export default function ChapterDetails() {
                   <Text className="mt-2 text-black text-lg">{q.paragraph}</Text>
                 )}
 
+                {/* Render answer if exists */}
+                {q.answer && (
+                  <Text className="ml-6 mt-1 text-lg text-gray-600">
+                    उत्तर:{' '}
+                    <Text className="font-medium text-black text-lg">
+                      {q.answer}
+                    </Text>
+                  </Text>
+                )}
                 {/* Render subQuestions or subQuestion in Q&A style */}
                 {(q.subQuestions?.length > 0 || q.subQuestion?.length > 0) && (
                   <View className="mt-2 ml-2">
@@ -133,15 +142,6 @@ export default function ChapterDetails() {
                 {q.example && (
                   <Text className="mt-2 italic text-gray-600 text-lg">
                     {q.example}
-                  </Text>
-                )}
-                {/* Render answer if exists */}
-                {q.answer && (
-                  <Text className="ml-6 mt-1 text-lg text-gray-600">
-                    उत्तर:{' '}
-                    <Text className="font-medium text-black text-lg">
-                      {q.answer}
-                    </Text>
                   </Text>
                 )}
 
