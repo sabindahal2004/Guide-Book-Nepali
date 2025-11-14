@@ -8,8 +8,8 @@ import chapterData from '@/src/data/chapterData';
 
 export default function ChapterDetails() {
   const {id} = useLocalSearchParams();
-  const chapter = chapterData.find(chap => chap.id === id);
-  // const [chapter, setChapter] = useState<any>([]);
+  // const chapter = chapterData.find(chap => chap.id === id);
+  const [chapter, setChapter] = useState<any>([]);
   const [loading, setLoading] = useState(true);
 
   // For debugging purposes
@@ -19,42 +19,42 @@ export default function ChapterDetails() {
   // }, [id]);
 
   // 🔹 Fetch chapter details from Firestore
-  // const fetchChapterDetails = async () => {
-  //   try {
-  //     if (!id) return;
+  const fetchChapterDetails = async () => {
+    try {
+      if (!id) return;
 
-  //     const docRef = doc(db, 'chapterDetails', id as string);
-  //     const docSnap = await getDoc(docRef);
+      const docRef = doc(db, 'chapterDetails', id as string);
+      const docSnap = await getDoc(docRef);
 
-  //     if (docSnap.exists()) {
-  //       setChapter({
-  //         id: docSnap.id,
-  //         ...docSnap.data(),
-  //       });
-  //     } else {
-  //       console.warn('⚠️ Chapter not found');
-  //       setChapter(null);
-  //     }
-  //   } catch (error) {
-  //     console.error('❌ Error fetching chapter:', error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+      if (docSnap.exists()) {
+        setChapter({
+          id: docSnap.id,
+          ...docSnap.data(),
+        });
+      } else {
+        console.warn('⚠️ Chapter not found');
+        setChapter(null);
+      }
+    } catch (error) {
+      console.error('❌ Error fetching chapter:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchChapterDetails();
-  // }, [id]);
+  useEffect(() => {
+    fetchChapterDetails();
+  }, [id]);
 
   // 🔹 Show loading indicator while fetching
-  // if (loading) {
-  //   return (
-  //     <View className="flex-1 justify-center items-center bg-white">
-  //       <ActivityIndicator size="large" color="#2563EB" />
-  //       <Text className="mt-3 text-gray-600 text-base">Loading chapter...</Text>
-  //     </View>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-white">
+        <ActivityIndicator size="large" color="#2563EB" />
+        <Text className="mt-3 text-gray-600 text-base">Loading chapter please wait...</Text>
+      </View>
+    );
+  }
 
   // 🔹 Show message if chapter not found
   if (!chapter) {

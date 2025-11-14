@@ -3,6 +3,8 @@ import React from 'react';
 import {Dimensions, ScrollView, StatusBar, View} from 'react-native';
 import Card from '../components/Card';
 import Drawer from 'expo-router/drawer';
+import {useEffect} from 'react';
+import bulkUploadData from '../../../config/bulkUploadData';
 
 const screenWidth = Dimensions.get('window').width;
 
