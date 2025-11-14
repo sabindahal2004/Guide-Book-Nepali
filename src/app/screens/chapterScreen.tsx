@@ -35,7 +35,7 @@ const ChapterScreen = () => {
               title={item.title}
               icon="book"
               iconSize={50}
-              description={`लेखक - ${item.writer} `}
+              description={`पाठ - ${item.chapterNo} `}
               customBgColor={item.bgColor}
               onPress={() =>
                 router.push(

@@ -89,7 +89,7 @@ const Card: React.FC<CardProps> = ({
         </View>
         {description && (
           <Text
-            className="text-white text-sm"
+            className="text-white text-lg font-semibold"
             numberOfLines={1}
             style={{
               textAlign: flexDirection === 'column' ? 'center' : 'left',

@@ -71,7 +71,7 @@ export default function ChapterDetails() {
       case 'wordMeaning':
         return (
           <View key={index} className="mb-8">
-            <Text className="text-2xl font-semibold mb-3 text-green-700">
+            <Text className="text-2xl font-bold mb-3 text-green-700">
               {section.title}
             </Text>
 
@@ -204,7 +204,7 @@ export default function ChapterDetails() {
       case 'comprehension':
         return (
           <View key={index} className="mb-8">
-            <Text className="text-2xl font-semibold mb-3 text-orange-700">
+            <Text className="text-2xl font-bold mb-3 text-orange-700">
               {section.title}
             </Text>
 
@@ -421,10 +421,6 @@ export default function ChapterDetails() {
       contentContainerClassName="py-5"
       showsVerticalScrollIndicator={false}>
       <AppView isNewView={true}>
-        <Text className="text-base text-center mb-6 text-gray-600">
-          लेखक: {chapter.writer}
-        </Text>
-
         {/* Render all sections dynamically */}
         {chapter.sections.map((section: any, i: number) =>
           renderSection(section, i),
