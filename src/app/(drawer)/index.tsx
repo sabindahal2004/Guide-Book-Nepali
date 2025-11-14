@@ -34,13 +34,15 @@ const Index = () => {
           customBgColor="#457b9d"
           onPress={() => router.push('../screens/chapterScreen')}
         />
+
         <Card
-          icon="school"
-          title="Grammar "
-          nepaliTitle="(व्याकरण)"
-          description="Let's understand grammar easily with notes, examples, and exercises."
+          icon="document-text"
+          title="Essays "
+          nepaliTitle="(निबन्धहरू)"
           customBgColor="#2a9d8f"
-          onPress={() => router.push('../screens/grammarScreen')}
+          flexDirection="row"
+          description='Let’s explore a simple collection of essays for quick learning.'
+          onPress={() => router.push('../screens/essayScreen')}
         />
 
         {/* Grid cards */}
@@ -64,6 +66,14 @@ const Index = () => {
             onPress={() => router.push('../screens/moreAppsScreen')}
           />
         </View>
+        <Card
+          icon="school"
+          title="Grammar "
+          nepaliTitle="(व्याकरण)"
+          description="Let's understand grammar easily with notes, examples, and exercises."
+          customBgColor="#62109F"
+          onPress={() => router.push('../screens/grammarScreen')}
+        />
         {/* <Card icon="heart" title="Support Us " nepaliTitle="(थप एपहरू)" /> */}
       </ScrollView>
     </>
