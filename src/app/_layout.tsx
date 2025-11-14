@@ -60,7 +60,7 @@ export default function RootLayout() {
 
         {/* Dynamic Old Question Screen */}
         <Stack.Screen
-          name="essay/[essay]"
+          name="essay/[essays]"
           options={({route}) => {
 
             return {
