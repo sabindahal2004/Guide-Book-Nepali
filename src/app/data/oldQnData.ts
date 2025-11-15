@@ -1,7 +1,7 @@
 const oldQuestions = [
   {
     year: '2082',
-    bgColor: '#8C00FF',
+    bgColor: '#62109F',
     pages: [
       {id: '1', image: require('../../../assets/oldQnImage/page1.jpg')},
       {id: '2', image: require('../../../assets/oldQnImage/page2.jpg')},

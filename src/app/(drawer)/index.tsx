@@ -71,7 +71,7 @@ const Index = () => {
           title="Grammar "
           nepaliTitle="(व्याकरण)"
           description="Let's understand grammar easily with notes, examples, and exercises."
-          customBgColor="#62109F"
+          customBgColor="#5C3E94"
           onPress={() => router.push('../screens/grammarScreen')}
         />
         {/* <Card icon="heart" title="Support Us " nepaliTitle="(थप एपहरू)" /> */}

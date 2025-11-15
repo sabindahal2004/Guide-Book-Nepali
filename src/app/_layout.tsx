@@ -33,7 +33,7 @@ export default function RootLayout() {
                 fontWeight: '600',
               },
               animation: 'slide_from_right',
-              headerShadowVisible:true,
+              headerShadowVisible: true,
             };
           }}
         />
@@ -62,7 +62,6 @@ export default function RootLayout() {
         <Stack.Screen
           name="essay/[essays]"
           options={({route}) => {
-
             return {
               headerTitle: `Essay (निबन्ध)`,
               headerTitleStyle: {

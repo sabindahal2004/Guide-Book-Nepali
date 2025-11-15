@@ -1,24 +1,30 @@
 import {ActivityIndicator, View, Text} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {Stack, useLocalSearchParams, useRouter} from 'expo-router';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
+import {useLocalSearchParams, useRouter, useNavigation} from 'expo-router';
 import {FlatList} from 'react-native-gesture-handler';
 import Card from '../components/Card';
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  orderBy,
-  query,
-} from 'firebase/firestore';
+import {collection, getDocs, orderBy, query} from 'firebase/firestore';
 import {db} from '@/config/firebaseConfig';
 
 const ChapterScreen = () => {
   const router = useRouter();
+  const navigation = useNavigation();
   const {id} = useLocalSearchParams();
   const [chapter, setChapter] = useState<any>([]);
   const [loading, setLoading] = useState(true);
-  
+
+  // Set header options immediately using navigation.setOptions
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: 'Chapters (अध्यायहरू)',
+      headerShadowVisible: true,
+      headerTitleStyle: {
+        fontSize: 20,
+        fontWeight: 'semibold',
+      },
+    });
+  }, [navigation]);
+
   // 🔹 Fetch chapter details from Firestore
   const fetchChapters = async () => {
     try {
@@ -70,18 +76,6 @@ const ChapterScreen = () => {
   }
   return (
     <>
-      <Stack.Screen
-        options={{
-          title: 'Chapters (अध्यायहरू)',
-          headerShadowVisible: true,
-          headerTitleStyle: {
-            fontSize: 20,
-            fontWeight: 'semibold',
-          },
-          animation: 'slide_from_right',
-        }}
-      />
-
       {/* Chapters View */}
       <View className="flex-1 bg-white">
         <FlatList
@@ -110,5 +104,4 @@ const ChapterScreen = () => {
     </>
   );
 };
-
 export default ChapterScreen;

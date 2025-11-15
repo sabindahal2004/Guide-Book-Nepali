@@ -3,7 +3,7 @@ import {Linking, ScrollView, Text, View} from 'react-native';
 export default function PrivacyPolicyScreen() {
   return (
     <ScrollView
-      className="flex-1 bg-white px-5 py-6 pb-10"
+      className="flex-1 bg-white px-5 py-6 pb-15"
       showsVerticalScrollIndicator={false}>
       <View className="mb-4">
         <Text className="text-2xl font-bold text-['#e76f51'] mb-2 text-center">

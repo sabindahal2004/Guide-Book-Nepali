@@ -3,7 +3,7 @@ import {Linking, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 
 export default function AboutScreen() {
   return (
-    <ScrollView className="flex-1 bg-white px-5 py-6 pb-10">
+    <ScrollView className="flex-1 bg-white px-5 py-6 pb-15">
       <View className="items-center mb-5">
         <Text className="text-2xl font-bold text-['#2a9d8f'] mb-2">
           Nepali Guide Book (SEE)
@@ -40,6 +40,10 @@ export default function AboutScreen() {
           <Text className="text-black mb-1 text-lg">
             <Ionicons name="checkmark-circle" size={16} color="#2a9d8f" />{' '}
             Chapter-wise Notes
+          </Text>
+          <Text className="text-black mb-1 text-lg">
+            <Ionicons name="checkmark-circle" size={16} color="#2a9d8f" />{' '}
+            Important Essays
           </Text>
           <Text className="text-gray-400 mb-1 text-lg">
             <Ionicons name="checkmark-circle" size={16} color="#2a9d8f" />{' '}

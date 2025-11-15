@@ -27,7 +27,7 @@ const Card: React.FC<CardProps> = ({
   containerStyle,
   onPress,
   disabled = false,
-  minHeight = 140,
+  minHeight = 120,
   iconSize = 65,
   fontSize = 'xl',
 }) => {
@@ -41,7 +41,7 @@ const Card: React.FC<CardProps> = ({
         containerStyle,
         {flexDirection, minHeight: minHeight, opacity: disabled ? 0.6 : 1},
       ]}
-      className="rounded-xl p-5 items-center justify-center m-2 "
+      className="rounded-xl p-5 items-center justify-center m-2 shadow-lg shadow-gray-400 active:opacity "
       accessibilityRole="button"
       accessibilityLabel={title}
       accessibilityHint={description}>
