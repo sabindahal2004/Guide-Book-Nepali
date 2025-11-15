@@ -4,7 +4,6 @@ import {doc, getDoc} from 'firebase/firestore';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
 import AppView from '../components/AppView';
-import chapterData from '@/src/data/chapterData';
 
 export default function ChapterDetails() {
   const {id} = useLocalSearchParams();

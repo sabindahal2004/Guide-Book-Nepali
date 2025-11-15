@@ -1,7 +1,6 @@
-import {Stack} from 'expo-router';
 import React from 'react';
-import {Image, View, Text, FlatList, Dimensions} from 'react-native';
-import oldQuestions from '@/src/data/oldQnData';
+import {Image, View, FlatList, Dimensions} from 'react-native';
+import oldQuestions from '../data/oldQnData';
 
 const {width} = Dimensions.get('window');
 

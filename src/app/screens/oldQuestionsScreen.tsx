@@ -1,7 +1,7 @@
 import {Stack, useRouter} from 'expo-router';
 import React from 'react';
 import {FlatList} from 'react-native';
-import oldQuestions from '@/src/data/oldQnData';
+import oldQuestions from '../data/oldQnData';
 import Card from '../components/Card';
 
 const OldQuestionScreen = () => {

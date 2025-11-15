@@ -1,18 +1,79 @@
-import {View} from 'react-native';
-import React from 'react';
-import {Stack, useRouter} from 'expo-router';
-import chapterData from '../../data/chapterData';
+import {ActivityIndicator, View, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Stack, useLocalSearchParams, useRouter} from 'expo-router';
 import {FlatList} from 'react-native-gesture-handler';
 import Card from '../components/Card';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+} from 'firebase/firestore';
+import {db} from '@/config/firebaseConfig';
 
 const ChapterScreen = () => {
   const router = useRouter();
+  const {id} = useLocalSearchParams();
+  const [chapter, setChapter] = useState<any>([]);
+  const [loading, setLoading] = useState(true);
+  
+  // 🔹 Fetch chapter details from Firestore
+  const fetchChapters = async () => {
+    try {
+      const chaptersQuery = query(
+        collection(db, 'chapterDetails'),
+        orderBy('id'),
+      );
+      const querySnapshot = await getDocs(chaptersQuery);
+
+      const chapter: any[] | ((prevState: never[]) => never[]) = [];
+      querySnapshot.forEach(doc => {
+        chapter.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+
+      setChapter(chapter);
+    } catch (error) {
+      console.error('❌ Error fetching chapters:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchChapters();
+  }, [id]);
+
+  // 🔹 Show loading indicator while fetching
+  if (loading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-white">
+        <ActivityIndicator size="large" color="#2563EB" />
+        <Text className="mt-3 text-gray-600 text-base">
+          Loading chapter please wait...
+        </Text>
+      </View>
+    );
+  }
+
+  // 🔹 Show message if chapter not found
+  if (!chapter) {
+    return (
+      <View className="flex-1 justify-center items-center bg-white">
+        <Text className="text-lg text-gray-600">Chapter not found</Text>
+      </View>
+    );
+  }
   return (
     <>
       <Stack.Screen
         options={{
           title: 'Chapters (अध्यायहरू)',
-          headerShadowVisible:true,
+          headerShadowVisible: true,
           headerTitleStyle: {
             fontSize: 20,
             fontWeight: 'semibold',
@@ -24,11 +85,11 @@ const ChapterScreen = () => {
       {/* Chapters View */}
       <View className="flex-1 bg-white">
         <FlatList
-          data={chapterData}
+          data={chapter}
           showsVerticalScrollIndicator={false}
           bounces={false}
           keyExtractor={chapter => chapter.id}
-          contentContainerStyle={{paddingTop:6, paddingBottom: 32}}
+          contentContainerStyle={{paddingTop: 6, paddingBottom: 32}}
           renderItem={({item}) => (
             <Card
               minHeight={100}
