@@ -2,7 +2,7 @@ import {View, Text, FlatList, ActivityIndicator} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import {router, Stack, useLocalSearchParams} from 'expo-router';
 import Card from '../components/Card';
-import { doc, getDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '@/config/firebaseConfig';
 
 const EssayScreen = () => {
@@ -10,30 +10,34 @@ const EssayScreen = () => {
     const [selectedEssay, setSelectedEssay] = useState<any>([]);
     const [loading, setLoading] = useState(true);
   
-    useEffect(() => {
-      const fetchEssayDetails = async () => {
+    // 🔹 Fetch chapter details from Firestore
+      const fetchEssays = async () => {
         try {
-          if (!essays) return;
-  
-          const docRef = doc(db, 'essayDetails', essays as string);
-          const docSnap = await getDoc(docRef);
-  
-          if (docSnap.exists()) {
-            setSelectedEssay({ id: docSnap.id, ...docSnap.data() });
-          } else {
-            console.warn('⚠️ Essay not found');
-            setSelectedEssay(null);
-          }
+          const essaysQuery = query(
+            collection(db, 'essayDetails'),
+            orderBy('id'),
+          );
+          const querySnapshot = await getDocs(essaysQuery);
+    
+          const selectedEssay: any[] | ((prevState: never[]) => never[]) = [];
+          querySnapshot.forEach(doc => {
+            selectedEssay.push({
+              id: doc.id,
+              ...doc.data(),
+            });
+          });
+    
+          setSelectedEssay(selectedEssay);
         } catch (error) {
-          console.error('❌ Error fetching essay:', error);
-          setSelectedEssay(null);
+          console.error('❌ Error fetching chapters:', error);
         } finally {
           setLoading(false);
         }
       };
-  
-      fetchEssayDetails();
-    }, [essays]);
+    
+      useEffect(() => {
+        fetchEssays();
+      }, [essays]);
   
     // Loading UI
     if (loading) {
