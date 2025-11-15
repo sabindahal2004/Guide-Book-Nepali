@@ -3,8 +3,6 @@ import React from 'react';
 import {Dimensions, ScrollView, StatusBar, View} from 'react-native';
 import Card from '../components/Card';
 import Drawer from 'expo-router/drawer';
-import {useEffect} from 'react';
-import bulkUploadData from '../../../config/bulkUploadData';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -41,7 +39,7 @@ const Index = () => {
           nepaliTitle="(निबन्धहरू)"
           customBgColor="#2a9d8f"
           flexDirection="row"
-          description='Let’s explore a simple collection of essays for quick learning.'
+          description="Let’s explore a simple collection of essays for quick learning."
           onPress={() => router.push('../screens/essayScreen')}
         />
 
