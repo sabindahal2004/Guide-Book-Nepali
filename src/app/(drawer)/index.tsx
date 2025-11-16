@@ -16,13 +16,13 @@ const Index = () => {
   const router = useRouter();
   return (
     <>
+      <StatusBar barStyle="default" />
       <Drawer.Screen
         options={{
           headerShadowVisible: false,
         }}
       />
       <ScrollView className=" bg-white   " showsVerticalScrollIndicator={false}>
-        <StatusBar barStyle="default" />
         {/* Full-width cards */}
         <Card
           icon="book"

@@ -50,7 +50,9 @@ export default function ChapterDetails() {
     return (
       <View className="flex-1 justify-center items-center bg-white">
         <ActivityIndicator size="large" color="#2563EB" />
-        <Text className="mt-3 text-gray-600 text-base">Loading chapter please wait...</Text>
+        <Text className="mt-3 text-gray-600 text-base">
+          Loading chapter please wait...
+        </Text>
       </View>
     );
   }

@@ -1,8 +1,14 @@
 import {Stack} from 'expo-router';
+import * as NavigationBar from 'expo-navigation-bar';
+import {useEffect} from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import '../../global.css';
 
 export default function RootLayout() {
+  useEffect(() => {
+    NavigationBar.setBehaviorAsync('overlay-swipe');
+    NavigationBar.setVisibilityAsync('hidden');
+  }, []);
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <Stack
