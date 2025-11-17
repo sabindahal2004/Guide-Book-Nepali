@@ -3,6 +3,7 @@ import React from 'react';
 import {Dimensions, ScrollView, StatusBar, View} from 'react-native';
 import Card from '../components/Card';
 import Drawer from 'expo-router/drawer';
+import NetworkBanner from '../components/NetworkBanner';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -17,6 +18,7 @@ const Index = () => {
   return (
     <>
       <StatusBar barStyle="default" />
+    {/* <NetworkBanner /> */}
       <Drawer.Screen
         options={{
           headerShadowVisible: false,
