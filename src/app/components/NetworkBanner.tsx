@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
-import NetInfo from "@react-native-community/netinfo";
+import React, {useEffect, useState} from 'react';
+import {View, Text} from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
+import {Ionicons} from '@expo/vector-icons';
 
 export default function NetworkBanner() {
   const [isConnected, setIsConnected] = useState<boolean>(true);
@@ -16,10 +17,19 @@ export default function NetworkBanner() {
   if (isConnected) return null;
 
   return (
-    <View style={{ backgroundColor: "red", padding: 8 }}>
-      <Text style={{ color: "white", textAlign: "center", fontWeight: "600" }}>
+    <View
+      style={{
+        backgroundColor: 'red',
+        padding: 8,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: 4,
+      }}>
+      <Text style={{color: 'white', textAlign: 'center', fontWeight: '600'}}>
         You are offline, Please connect to your internet
       </Text>
+      <Ionicons name="wifi" size={13}  color={"white"}/>
     </View>
   );
 }
