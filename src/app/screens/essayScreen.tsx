@@ -4,7 +4,8 @@ import {router, useLocalSearchParams, useNavigation} from 'expo-router';
 import Card from '../components/Card';
 import {collection, getDocs, orderBy, query} from 'firebase/firestore';
 import {db} from '@/config/firebaseConfig';
-import NetInfo from "@react-native-community/netinfo";
+import NetInfo from '@react-native-community/netinfo';
+import NetworkBanner from '../components/NetworkBanner';
 
 const EssayScreen = () => {
   const navigation = useNavigation();
@@ -82,6 +83,7 @@ const EssayScreen = () => {
   }
   return (
     <>
+      <NetworkBanner />
       <FlatList
         data={selectedEssay}
         keyExtractor={data => data.id.toString()}

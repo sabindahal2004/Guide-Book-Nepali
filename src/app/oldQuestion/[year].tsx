@@ -1,12 +1,14 @@
 import React from 'react';
 import {Image, View, FlatList, Dimensions} from 'react-native';
 import oldQuestions from '../data/oldQnData';
+import NetworkBanner from '../components/NetworkBanner';
 
 const {width} = Dimensions.get('window');
 
 const OldQuestionScreen = () => {
   return (
     <>
+      <NetworkBanner />
       <FlatList
         data={oldQuestions}
         keyExtractor={item => item.year.toString()}

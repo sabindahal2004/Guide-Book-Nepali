@@ -1,11 +1,12 @@
-import { View, Text, ScrollView, ActivityIndicator } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { useLocalSearchParams } from 'expo-router';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '@/config/firebaseConfig';
+import {View, Text, ScrollView, ActivityIndicator} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {useLocalSearchParams} from 'expo-router';
+import {doc, getDoc} from 'firebase/firestore';
+import {db} from '@/config/firebaseConfig';
+import NetworkBanner from '../components/NetworkBanner';
 
 const EssayDetails = () => {
-  const { essays, title } = useLocalSearchParams();
+  const {essays, title} = useLocalSearchParams();
   const [selectedEssay, setSelectedEssay] = useState<any>([]);
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +19,7 @@ const EssayDetails = () => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          setSelectedEssay({ id: docSnap.id, ...docSnap.data() });
+          setSelectedEssay({id: docSnap.id, ...docSnap.data()});
         } else {
           console.warn('⚠️ Essay not found');
           setSelectedEssay(null);
@@ -39,7 +40,9 @@ const EssayDetails = () => {
     return (
       <View className="flex-1 justify-center items-center bg-white">
         <ActivityIndicator size="large" color="#2563EB" />
-        <Text className="mt-3 text-gray-600">Loading essay, please wait...</Text>
+        <Text className="mt-3 text-gray-600">
+          Loading essay, please wait...
+        </Text>
       </View>
     );
   }
@@ -54,26 +57,27 @@ const EssayDetails = () => {
   }
 
   return (
-    <ScrollView
-      className="flex-1 bg-white px-4"
-      contentContainerClassName="py-5"
-      showsVerticalScrollIndicator={false}>
-      
-      {/* Title */}
-      <View className="p-4 mb-5">
-        <Text className="text-black text-2xl font-bold text-center">
-          {title || selectedEssay.title}
-        </Text>
-      </View>
+    <>
+      <NetworkBanner />
+      <ScrollView
+        className="flex-1 bg-white px-4"
+        contentContainerClassName="py-5"
+        showsVerticalScrollIndicator={false}>
+        {/* Title */}
+        <View className="p-4 mb-5">
+          <Text className="text-black text-2xl font-bold text-center">
+            {title || selectedEssay.title}
+          </Text>
+        </View>
 
-      {/* Content */}
-      <View className="px-1">
-        <Text className="text-xl leading-7 text-gray-900">
-          {selectedEssay.content}
-        </Text>
-      </View>
-
-    </ScrollView>
+        {/* Content */}
+        <View className="px-1">
+          <Text className="text-xl leading-7 text-gray-900">
+            {selectedEssay.content}
+          </Text>
+        </View>
+      </ScrollView>
+    </>
   );
 };
 

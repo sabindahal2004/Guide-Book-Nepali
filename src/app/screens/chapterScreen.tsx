@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import {collection, getDocs, orderBy, query} from 'firebase/firestore';
 import {db} from '@/config/firebaseConfig';
 import NetInfo from '@react-native-community/netinfo';
+import NetworkBanner from '../components/NetworkBanner';
 
 const ChapterScreen = () => {
   const router = useRouter();
@@ -87,6 +88,7 @@ const ChapterScreen = () => {
   }
   return (
     <>
+      <NetworkBanner />
       {/* Chapters View */}
       <View className="flex-1 bg-white">
         <FlatList

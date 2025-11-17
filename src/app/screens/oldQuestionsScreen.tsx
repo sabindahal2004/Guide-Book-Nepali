@@ -3,11 +3,13 @@ import React from 'react';
 import {FlatList} from 'react-native';
 import oldQuestions from '../data/oldQnData';
 import Card from '../components/Card';
+import NetworkBanner from '../components/NetworkBanner';
 
 const OldQuestionScreen = () => {
   const router = useRouter();
   return (
     <>
+      <NetworkBanner />
       <Stack.Screen
         options={{
           title: 'Old Questions (प्रश्नहरू)',

@@ -3,7 +3,6 @@ import * as NavigationBar from 'expo-navigation-bar';
 import {useEffect} from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import '../../global.css';
-import NetworkBanner from './components/NetworkBanner';
 
 export default function RootLayout() {
   useEffect(() => {
@@ -13,7 +12,6 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={{flex: 1}}>
-      <NetworkBanner />
       <Stack
         screenOptions={{
           headerShadowVisible: false,

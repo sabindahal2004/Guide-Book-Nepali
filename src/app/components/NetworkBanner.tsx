@@ -20,7 +20,7 @@ export default function NetworkBanner() {
     <View
       style={{
         backgroundColor: 'red',
-        padding: 8,
+        paddingVertical: 2,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

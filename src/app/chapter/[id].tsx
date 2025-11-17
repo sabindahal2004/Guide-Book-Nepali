@@ -4,6 +4,7 @@ import {doc, getDoc} from 'firebase/firestore';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
 import AppView from '../components/AppView';
+import NetworkBanner from '../components/NetworkBanner';
 
 export default function ChapterDetails() {
   const {id} = useLocalSearchParams();
@@ -417,16 +418,19 @@ export default function ChapterDetails() {
   };
 
   return (
-    <ScrollView
-      className="bg-white flex-1 px-4"
-      contentContainerClassName="py-5"
-      showsVerticalScrollIndicator={false}>
-      <AppView isNewView={true}>
-        {/* Render all sections dynamically */}
-        {chapter.sections.map((section: any, i: number) =>
-          renderSection(section, i),
-        )}
-      </AppView>
-    </ScrollView>
+    <>
+      <NetworkBanner />
+      <ScrollView
+        className="bg-white flex-1 px-4"
+        contentContainerClassName="py-5"
+        showsVerticalScrollIndicator={false}>
+        <AppView isNewView={true}>
+          {/* Render all sections dynamically */}
+          {chapter.sections.map((section: any, i: number) =>
+            renderSection(section, i),
+          )}
+        </AppView>
+      </ScrollView>
+    </>
   );
 }
