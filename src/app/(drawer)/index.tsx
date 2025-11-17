@@ -1,6 +1,7 @@
 import {useRouter} from 'expo-router';
 import React, {useEffect, useState} from 'react';
 import {
+  AppState,
   BackHandler,
   Dimensions,
   ScrollView,
@@ -12,22 +13,30 @@ import Drawer from 'expo-router/drawer';
 import ExitConfirmationModal from '../components/ExitConfirmModal';
 import NetworkBanner from '../components/NetworkBanner';
 
-
 const screenWidth = Dimensions.get('window').width;
 
 const Index = () => {
-  // For bulk upload data only once (To firestore)
-  // useEffect(() => {
-  //   bulkUploadData();
-  // }, []);
   const [exitModal, setExitModal] = useState(false);
-  const cardWidth = (screenWidth - 30) / 2;
   const router = useRouter();
+  const cardWidth = (screenWidth - 30) / 2;
 
+  // 🔹 Reset Exit Modal When App Reopens
+  useEffect(() => {
+    const appStateListener = AppState.addEventListener('change', state => {
+      if (state === 'active') {
+        // When app becomes active again → reset the modal
+        setExitModal(false);
+      }
+    });
+
+    return () => appStateListener.remove();
+  }, []);
+
+  // 🔹 Android Hardware Back Button Handler
   useEffect(() => {
     const backAction = () => {
       setExitModal(true);
-      return true; // prevent default exit
+      return true; // prevent default back behavior
     };
 
     const subscription = BackHandler.addEventListener(
@@ -45,20 +54,24 @@ const Index = () => {
   const handleCancel = () => {
     setExitModal(false);
   };
+
   return (
     <>
       <StatusBar barStyle="default" />
+
       <Drawer.Screen
         options={{
           headerShadowVisible: false,
         }}
       />
-      <ScrollView className=" bg-white   " showsVerticalScrollIndicator={false}>
+
+      <ScrollView className="bg-white" showsVerticalScrollIndicator={false}>
         <NetworkBanner />
+
         {/* Full-width cards */}
         <Card
           icon="book"
-          title="Chapters "
+          title="Chapters"
           nepaliTitle="(अध्यायहरू)"
           description="Let's explore notes and solved questions."
           customBgColor="#457b9d"
@@ -67,7 +80,7 @@ const Index = () => {
 
         <Card
           icon="document-text"
-          title="Essays "
+          title="Essays"
           nepaliTitle="(निबन्धहरू)"
           customBgColor="#2a9d8f"
           flexDirection="row"
@@ -75,20 +88,21 @@ const Index = () => {
           onPress={() => router.push('../screens/essayScreen')}
         />
 
-        {/* Grid cards */}
+        {/* Grid Cards */}
         <View className="flex-row flex-wrap justify-center">
           <Card
             icon="document"
-            title="Old Questions "
+            title="Old Questions"
             nepaliTitle="(विगतका प्रश्नहरू)"
             customBgColor="#e76f51"
             flexDirection="column"
             containerStyle={{width: cardWidth}}
             onPress={() => router.push('../screens/oldQuestionsScreen')}
           />
+
           <Card
             icon="apps"
-            title="More Apps "
+            title="More Apps"
             nepaliTitle="(थप एपहरू)"
             customBgColor="#f4a261"
             flexDirection="column"
@@ -96,16 +110,18 @@ const Index = () => {
             onPress={() => router.push('../screens/moreAppsScreen')}
           />
         </View>
+
         <Card
           icon="school"
-          title="Grammar "
+          title="Grammar"
           nepaliTitle="(व्याकरण)"
           description="Let's understand grammar easily with notes, examples, and exercises."
           customBgColor="#5C3E94"
           onPress={() => router.push('../screens/grammarScreen')}
         />
-        {/* <Card icon="heart" title="Support Us " nepaliTitle="(थप एपहरू)" /> */}
       </ScrollView>
+
+      {/* Exit Confirmation Modal */}
       <ExitConfirmationModal
         visible={exitModal}
         onCancel={handleCancel}
