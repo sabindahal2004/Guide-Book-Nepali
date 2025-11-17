@@ -1,9 +1,10 @@
-import {View, Text, FlatList, ActivityIndicator} from 'react-native';
+import {View, Text, FlatList, ActivityIndicator, Alert} from 'react-native';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {router, useLocalSearchParams, useNavigation} from 'expo-router';
 import Card from '../components/Card';
 import {collection, getDocs, orderBy, query} from 'firebase/firestore';
 import {db} from '@/config/firebaseConfig';
+import NetInfo from "@react-native-community/netinfo";
 
 const EssayScreen = () => {
   const navigation = useNavigation();
@@ -25,6 +26,16 @@ const EssayScreen = () => {
 
   // 🔹 Fetch chapter details from Firestore
   const fetchEssays = async () => {
+    const net = await NetInfo.fetch();
+    if (!net.isConnected) {
+      Alert.alert(
+        'You are Offline !',
+        'Please connect to the internet to load essays.',
+      );
+      setLoading(false);
+      return;
+    }
+
     try {
       const essaysQuery = query(collection(db, 'essayDetails'), orderBy('id'));
       const querySnapshot = await getDocs(essaysQuery);

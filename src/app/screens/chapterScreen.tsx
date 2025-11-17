@@ -5,6 +5,7 @@ import {FlatList} from 'react-native-gesture-handler';
 import Card from '../components/Card';
 import {collection, getDocs, orderBy, query} from 'firebase/firestore';
 import {db} from '@/config/firebaseConfig';
+import NetInfo from '@react-native-community/netinfo';
 
 const ChapterScreen = () => {
   const router = useRouter();
@@ -27,6 +28,16 @@ const ChapterScreen = () => {
 
   // 🔹 Fetch chapter details from Firestore
   const fetchChapters = async () => {
+    const net = await NetInfo.fetch();
+
+    if (!net.isConnected) {
+      Alert.alert(
+        'You are Offline !',
+        'Please connect to the internet to load chapters.',
+      );
+      setLoading(false);
+      return;
+    }
     try {
       const chaptersQuery = query(
         collection(db, 'chapterDetails'),
