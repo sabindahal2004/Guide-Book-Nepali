@@ -1,9 +1,15 @@
 import {useRouter} from 'expo-router';
-import React from 'react';
-import {Dimensions, ScrollView, StatusBar, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  BackHandler,
+  Dimensions,
+  ScrollView,
+  StatusBar,
+  View,
+} from 'react-native';
 import Card from '../components/Card';
 import Drawer from 'expo-router/drawer';
-import NetworkBanner from '../components/NetworkBanner';
+import ExitConfirmationModal from '../components/ExitConfirmModal';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -12,13 +18,35 @@ const Index = () => {
   // useEffect(() => {
   //   bulkUploadData();
   // }, []);
-
+  const [exitModal, setExitModal] = useState(false);
   const cardWidth = (screenWidth - 30) / 2;
   const router = useRouter();
+
+  useEffect(() => {
+    const backAction = () => {
+      setExitModal(true);
+      return true; // prevent default exit
+    };
+
+    const subscription = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => subscription.remove();
+  }, []);
+
+  const handleExit = () => {
+    BackHandler.exitApp();
+  };
+
+  const handleCancel = () => {
+    setExitModal(false);
+  };
   return (
     <>
       <StatusBar barStyle="default" />
-    {/* <NetworkBanner /> */}
+      {/* <NetworkBanner /> */}
       <Drawer.Screen
         options={{
           headerShadowVisible: false,
@@ -76,6 +104,11 @@ const Index = () => {
         />
         {/* <Card icon="heart" title="Support Us " nepaliTitle="(थप एपहरू)" /> */}
       </ScrollView>
+      <ExitConfirmationModal
+        visible={exitModal}
+        onCancel={handleCancel}
+        onExit={handleExit}
+      />
     </>
   );
 };
