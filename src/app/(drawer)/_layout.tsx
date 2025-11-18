@@ -3,6 +3,7 @@ import {Ionicons} from '@expo/vector-icons';
 import {useState} from 'react';
 import RateUsModal from '../components/RateUsModal';
 import {Share, View} from 'react-native';
+import CustomDrawer from '../components/CustomDrawer';
 
 export default function DrawerLayout() {
   const [showRateUsModal, setShowRateUsModal] = useState(false);
@@ -24,6 +25,7 @@ export default function DrawerLayout() {
   return (
     <>
       <Drawer
+        drawerContent={props => <CustomDrawer {...props} />}
         screenOptions={{
           headerTitleStyle: {
             fontSize: 20,
