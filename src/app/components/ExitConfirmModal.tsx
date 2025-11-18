@@ -26,7 +26,7 @@ export default function ExitConfirmationModal({
             width: '80%',
             backgroundColor: 'white',
             borderRadius: 10,
-            padding: 20,
+            padding: 25,
           }}>
           <Text style={{fontSize: 18, fontWeight: '600', marginBottom: 10}}>
           Do you want to exit the app?

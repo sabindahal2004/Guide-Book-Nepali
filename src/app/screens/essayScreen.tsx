@@ -114,6 +114,8 @@ const EssayScreen = () => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        showsVerticalScrollIndicator={false}
+        contentContainerClassName="bg-white"
         renderItem={({item}) => (
           <Card
             title={item.title}
