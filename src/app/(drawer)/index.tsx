@@ -26,6 +26,7 @@ const Index = () => {
       if (state === 'active') {
         // When app becomes active again → reset the modal
         setExitModal(false);
+        router.dismissAll()
       }
     });
 
