@@ -1,4 +1,4 @@
-import {ActivityIndicator, View, Text, Alert} from 'react-native';
+import {ActivityIndicator, View, Text, Alert, RefreshControl} from 'react-native';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {useLocalSearchParams, useRouter, useNavigation} from 'expo-router';
 import {FlatList} from 'react-native-gesture-handler';
@@ -14,6 +14,7 @@ const ChapterScreen = () => {
   const {id} = useLocalSearchParams();
   const [chapter, setChapter] = useState<any>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   // Set header options immediately using navigation.setOptions
   useLayoutEffect(() => {
@@ -66,6 +67,22 @@ const ChapterScreen = () => {
     fetchChapters();
   }, [id]);
 
+  const onRefresh = async () => {
+    setRefreshing(true);
+
+    const net = await NetInfo.fetch();
+
+    if (!net.isConnected) {
+      // Still offline → just stop animation
+      setRefreshing(false);
+      return;
+    }
+
+    // Back online → fetch again
+    await fetchChapters();
+    setRefreshing(false);
+  };
+
   // 🔹 Show loading indicator while fetching
   if (loading) {
     return (
@@ -97,6 +114,9 @@ const ChapterScreen = () => {
           bounces={false}
           keyExtractor={chapter => chapter.id}
           contentContainerStyle={{paddingTop: 6, paddingBottom: 32}}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
           renderItem={({item}) => (
             <Card
               minHeight={100}

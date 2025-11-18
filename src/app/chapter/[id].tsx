@@ -2,15 +2,23 @@ import {db} from '@/config/firebaseConfig';
 import {useLocalSearchParams} from 'expo-router';
 import {doc, getDoc} from 'firebase/firestore';
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  RefreshControl,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import AppView from '../components/AppView';
 import NetworkBanner from '../components/NetworkBanner';
+import NetInfo from '@react-native-community/netinfo';
 
 export default function ChapterDetails() {
   const {id} = useLocalSearchParams();
   // const chapter = chapterData.find(chap => chap.id === id);
   const [chapter, setChapter] = useState<any>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   // For debugging purposes
   // useEffect(() => {
@@ -45,6 +53,22 @@ export default function ChapterDetails() {
   useEffect(() => {
     fetchChapterDetails();
   }, [id]);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+
+    const net = await NetInfo.fetch();
+
+    if (!net.isConnected) {
+      // Still offline → just stop animation
+      setRefreshing(false);
+      return;
+    }
+
+    // Back online → fetch again
+    await fetchChapterDetails();
+    setRefreshing(false);
+  };
 
   // 🔹 Show loading indicator while fetching
   if (loading) {
@@ -421,8 +445,14 @@ export default function ChapterDetails() {
     <>
       <NetworkBanner />
       <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         className="bg-white flex-1 px-4"
-        contentContainerClassName="py-5"
+        contentContainerStyle={{
+          paddingVertical: 5,
+          flexGrow: 1,
+        }}
         showsVerticalScrollIndicator={false}>
         <AppView isNewView={true}>
           {/* Render all sections dynamically */}

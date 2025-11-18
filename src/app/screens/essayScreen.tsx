@@ -1,4 +1,11 @@
-import {View, Text, FlatList, ActivityIndicator, Alert} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  ActivityIndicator,
+  Alert,
+  RefreshControl,
+} from 'react-native';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {router, useLocalSearchParams, useNavigation} from 'expo-router';
 import Card from '../components/Card';
@@ -12,6 +19,7 @@ const EssayScreen = () => {
   const {essays} = useLocalSearchParams();
   const [selectedEssay, setSelectedEssay] = useState<any>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   // Set header options immediately using navigation.setOptions
   useLayoutEffect(() => {
@@ -61,6 +69,22 @@ const EssayScreen = () => {
     fetchEssays();
   }, [essays]);
 
+  const onRefresh = async () => {
+    setRefreshing(true);
+
+    const net = await NetInfo.fetch();
+
+    if (!net.isConnected) {
+      // Still offline → just stop animation
+      setRefreshing(false);
+      return;
+    }
+
+    // Back online → fetch again
+    await fetchEssays();
+    setRefreshing(false);
+  };
+
   // Loading UI
   if (loading) {
     return (
@@ -87,6 +111,9 @@ const EssayScreen = () => {
       <FlatList
         data={selectedEssay}
         keyExtractor={data => data.id.toString()}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         renderItem={({item}) => (
           <Card
             title={item.title}
