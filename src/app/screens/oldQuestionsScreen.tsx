@@ -24,6 +24,7 @@ const OldQuestionScreen = () => {
       <FlatList
         data={oldQuestions}
         keyExtractor={item => item.year.toString()}
+        contentContainerClassName='bg-white flex-1'
         renderItem={({item}) => (
           <Card
             icon="document"

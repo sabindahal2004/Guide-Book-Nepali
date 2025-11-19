@@ -33,7 +33,6 @@ const EssayDetails = () => {
       }
     } catch (error) {
       console.error('❌ Error fetching essay:', error);
-      setSelectedEssay(null);
     } finally {
       setLoading(false);
     }
